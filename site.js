@@ -21,16 +21,34 @@ saveButton.addEventListener('click', () => {
 	if (!nameInput.value) return alert('Please enter your name!')
 
 	// todo: save the user data to local storage (10 points)
+	const data = {
+		name: nameInput.value,
+		hue: hueInput.value,
+		lastAccess: new Date().toLocaleDateString()
+	}
+	localStorage.setItem('user-data',JSON.stringify(data))
 	// hint: Use the following to get the date as a string: new Date().toLocaleDateString()
 
 	// todo: show that the data has been saved by updating the button text 
+	saveButton.value = 'Saved'
 	// then change it back to 'Save' after a few seconds (5 points)
+	setTimeout(()=>{
+		saveButton.value = 'Save'
+	},2000)
 })
 
 
 // todo: set the initial values of the input elements if the user is returning (5 points)
+if(userData.name !=='') {
+	nameInput.value = userData.name,
+	hueInput.value = userData.hue
+
+	welcomeH1.textContent = 'Welcome, ' + userData.name
+	timeP.textContent = 'Your Last Visit: ' + userData.lastAccess
+} 
 
 // todo: update the welcome and time messages if the user is returning (5 points)
+
 
 
 // trigger the range input event to set the initial background color
